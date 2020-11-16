@@ -1,6 +1,15 @@
 from django.db import models
 
 
+class Poll(models.Model):
+    title = models.CharField(max_length=200)
+    date_from = models.DateTimeField()
+    date_to = models.DateTimeField()
+    status = models.IntegerField(2)
+
+    def __str__(self):
+        return self.title
+
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')

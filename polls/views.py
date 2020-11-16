@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Poll
+
+def poll_detail(request, id):
+    poll = Poll.objects.get(pk=id)
+    return render(request, "polls/detail.html", {"poll": poll})
