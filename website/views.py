@@ -1,0 +1,17 @@
+from datetime import datetime
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+from meetings.models import Meeting
+# from polls.models import 
+
+
+def welcome(request):
+   # return HttpResponse("Welcome to SonySugar Web " + str(datetime.now()))
+   # return render(request, "website/welcome.html", {"today": str(datetime.now())})
+   return render(request, "website/welcome.html",
+                  {"num_meetings": Meeting.objects.count()})
+
+def about(request):
+    return HttpResponse("SonySugar is a world class manufacturer of sugar and its associated products.")
