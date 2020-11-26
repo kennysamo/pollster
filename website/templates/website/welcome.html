@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
     <h1><a href="http://www.sonysugar.co.ke" target="_blank">Welcome to SonySugar on the Web</a></h1>
     <p><em>Supercharge your operations TODAY!!! Secure your data and assets, manage realtime response to issues that matter on mobile and across the web.</a></em><a href="#">GET STARTED</a></p>
     <hr>
@@ -19,8 +14,17 @@
     <p>
         <ul>
             <li>
-                <p>You have {{num_meetings}} meetings scheduled.</p>
-                <p><em><a href="#">Do More...</a></em></p>
+                <h4>Meetings</h4>
+                    <ul>
+                        {% for meeting in meetings %}
+                            <li>
+                                <a href="{% url 'detail' meeting.id %}">
+                                    {{meeting.title}}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                <p>Show all available meeting rooms. <a href="{% url 'rooms' %}" target="_blank">Show all available meeting rooms</a> </p>
             </li>
         </ul>
     </p>
@@ -61,5 +65,4 @@
         <p><input type="button" value="Submit"></p>
     </form>
     <hr>
-</body>
-</html>
+{% endblock %}
